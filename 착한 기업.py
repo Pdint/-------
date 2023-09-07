@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-import selenium
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 #url , 지정 정보
 url = "https://www.goodprice.go.kr/search/goodstore.do"
@@ -8,7 +9,8 @@ data={"OptSido":"14", "OptGugun":"구미시"}
 
 #드라이버 지정
 dr = webdriver.Chrome()
-dr.get("https://www.goodprice.go.kr/search/goodstore.do")
+dr.get(url)
+
 #request(POST)
 res = requests.post(url, data)
 
