@@ -1,0 +1,24 @@
+<td class="board_seven">
+												경상북도 구미시 송동로7길 33(도량동)</td>
+<td class="board_seven">
+												경상북도 구미시 금오산로12길 5-1(원평동)</td>
+<td class="board_seven">
+												경상북도 구미시 상사동로27길 25(사곡동)</td>
+<td class="board_seven">
+												경상북도 구미시 상사동로22길 8, 가동 102호(사곡동)</td>
+<td class="board_seven">
+												경상북도 구미시 구미대로 384-1(신평동)</td>
+<td class="board_seven">
+												경상북도 구미시 도봉로5안길 6-1(도량동)</td>
+<td class="board_seven">
+												경상북도 구미시 신시로16길 67, 지하1층(송정동)</td>
+<td class="board_seven">
+												경상북도 구미시 고아읍 들성로 27</td>
+<td class="board_seven">
+												경상북도 구미시 인동26길 41(진평동)</td>
+<td class="board_seven">
+												경상북도 구미시 봉곡서로 48(봉곡동)</td>
+<td class="board_seven">
+												경상북도 구미시 구미중앙로 30(원평동)</td>
+<td class="board_seven">
+												경상북도 구미시 금오산로10길 9-1(원평동)</td>
