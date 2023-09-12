@@ -17,9 +17,11 @@ dr.get(url)
 opt_sido = dr.find_element(By.NAME, "OptSido")
 opt_sido.send_keys("경상북도")  # 시도 입력
 
+#적용까지 대기
+time.sleep(3)
 
-wait = WebDriverWait(dr, 10)
-wait.until(EC.presence_of_element_located((By.NAME, "OptGugun")))
+#wait = WebDriverWait(dr, 10)
+#wait.until(EC.presence_of_element_located((By.NAME, "OptGugun")))
 
 opt_gugun = dr.find_element(By.NAME, "OptGugun")
 opt_gugun.send_keys("구미시")  # 구군 입력
