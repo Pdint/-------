@@ -44,6 +44,7 @@ try:
                 shop_list.append(k.text)
             #10초간 멈춤
             time.sleep(10)
+
 #이거는 잘 되는지 모르겠음.
 except TimeoutError:
     print("오류 발생")
