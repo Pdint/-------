@@ -4,27 +4,22 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
+url = "https://www.goodprice.go.kr/search/goodstore.do" #url , 지정 정보
 
-#url , 지정 정보
-url = "https://www.goodprice.go.kr/search/goodstore.do"
-
-#드라이버 지정
-dr = webdriver.Chrome()
+dr = webdriver.Chrome() #드라이버 지정
 dr.get(url)
 
-# 데이터 입력
-opt_sido = dr.find_element(By.NAME, "OptSido")
+opt_sido = dr.find_element(By.NAME, "OptSido") # 데이터 입력
 opt_sido.send_keys("경상북도")  # 시도 입력
 
-#지정 대기
-time.sleep(3)
+time.sleep(3) #지정 대기
 
 opt_gugun = dr.find_element(By.NAME, "OptGugun")
 opt_gugun.send_keys("구미시")  # 구군 입력
 
-#검색 클릭
+
 search = dr.find_element(By.XPATH, '//*[@id="cont-sbj"]/form[1]/div/div/div/a')
-search.click()
+search.click() #검색 클릭
 
 #크롤링 코드
 try:
