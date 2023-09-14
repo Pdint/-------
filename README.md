@@ -8,4 +8,7 @@
 4. https://overface.tistory.com/567
 5. https://rednooby.tistory.com/98
 
+처음에는 beautifulsoup를 이용하여서 크롤링을 시도했으나 동적 사이트여서 selenium 페키지를 이용해서 크롤링을 시도하였음.
+res = requests.post(url, data) -> 현재 try: 이후 코드
 
+총 shop_data.txt에 정보를 적어놓았고 크롤링을 사용했다.
