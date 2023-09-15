@@ -23,7 +23,6 @@ search.click() #검색 클릭
 
 #크롤링 코드
 try:
-
     shop_list=[]
     num = 1
     for i in range(5):
@@ -39,6 +38,15 @@ try:
                 shop_list.append(k.text)
             #10초간 멈춤
             time.sleep(10)
+
+
+
+
+
+
+
+
+
 
 #이거는 잘 되는지 모르겠음.
 except TimeoutError:
