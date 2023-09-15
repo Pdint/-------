@@ -1,5 +1,5 @@
 # Crwling-r
-착한 가격 업소 리스트와 주소를 수직하는것을 목표 ("https://www.goodprice.go.kr/search/goodstore.do")
+착한 가격 업소 리스트와 주소를 수집을 목표 ("https://www.goodprice.go.kr/search/goodstore.do")
 
 참고 사이트
 1. https://www.selenium.dev/documentation/webdriver/getting_started/first_script/
@@ -8,4 +8,7 @@
 4. https://overface.tistory.com/567
 5. https://rednooby.tistory.com/98
 
-현재 본래는 requests를 이용해 정보을 습득할려 햇으나 한 페이지만 되어서 selenium을 이용하자니 요소 선택 부분에서 요소 없음 오류코드가 표출되기에 이후에 진행할 예정
+처음에는 beautifulsoup를 이용하여서 크롤링을 시도했으나 동적 사이트여서 selenium 페키지를 이용해서 크롤링을 시도하였음.
+res = requests.post(url, data) -> 현재 try: 이후 코드
+
+총 shop_data.txt에 정보를 적어놓았고 크롤링을 사용했다.
