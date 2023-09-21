@@ -53,8 +53,3 @@ plt.figure()
 plt.imshow(gen)
 
 wc.to_file('워드클라우드.png')
-
-#print(komoran_tag)
-#
-#print(news)
-#print(words)
