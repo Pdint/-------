@@ -19,7 +19,7 @@ for i in title:
     news_list.append(i.text)
 news = "\n".join(news_list)
 ##################
-
+# 정규식을 통한 문장 전치화
 pattern = r'\([^)]*\)'  # () 제거
 news = re.sub(pattern=pattern, repl='', string=news)
 
@@ -40,16 +40,19 @@ news = re.sub(pattern=pattern, repl=" ", string=news)
 pattern = r'\b(?:SBS|MBC|KBS|JTBC|연합|뉴스A)\b'
 news = re.sub(pattern=pattern, repl=" ", string=news)
 
-##############
+#######################
+#형태소 분석기 ON
 komoran = Komoran()
 komoran_tag = komoran.pos(news)
 
 words = [word for word, pos in komoran_tag if (pos == 'NNP' or pos == 'SL') and len(word) > 1]
-c = Counter(words)
+c = Counter(words) #counter 모뮬 이용
 
+#워드 클라우드 생성
 wc = WordCloud(font_path='gulim', width=400, height=400, scale=2.0, max_font_size=250)
 gen = wc.generate_from_frequencies(c)
 plt.figure()
 plt.imshow(gen)
 
+#워드 클라우드 파일 불러오기
 wc.to_file('워드클라우드.png')
