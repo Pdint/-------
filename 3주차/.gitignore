@@ -219,6 +219,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/python,windows,visualstudiocode
-2주차\test.py
-2주차\konlny test.py
+
 *.txt
