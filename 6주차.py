@@ -1,5 +1,5 @@
-from konlpy.tag import Kkom # 형태소 분석기
-from konlpy.tag import twiter
+from konlpy.tag import Kkma # 형태소 분석기
+from konlpy.tag import Twitter
 
 import numpy as np #키워드 분석을 위한 그래프 생성 패키지
 
@@ -15,18 +15,19 @@ class SentenceTokenizer(object):
         self.stopwords = ['중인' ,'만큼', '마찬가지', '꼬집었', "연합뉴스", "데일리", "동아일보", "중앙일보", "조선일보", "기자","아", "휴", "아이구", "아이쿠", "아이고", "어", "나", "우리", "저희", "따라", "의해", "을", "를", "에", "의", "가",]
 
     def text2sentences(self, text):
+
         sentences = self.kkma.sentences(text)      
-            for idx in range(0, len(sentences)):
-                if len(sentences[idx]) <= 10:
-                    sentences[idx-1] += (' ' + sentences[idx])
-                    sentences[idx] = ''
+        for idx in range(0, len(sentences)):
+            if len(sentences[idx]) <= 10:
+                sentences[idx-1] += (' ' + sentences[idx])
+                sentences[idx] = ''
         
         return sentences
 
 def get_nouns(self, sentences):
     nouns = []
     for sentence in sentences:
-        if sentence is not '':
+        if sentence != '':
             nouns.append(' '.join([noun for noun in self.twitter.nouns(str(sentence)) 
                                    if noun not in self.stopwords and len(noun) > 1]))
         
@@ -65,3 +66,4 @@ class Rank(object):
       B = (1-d) * np.ones((matrix_size, 1))
       ranks = np.linalg.solve(A, B) # 연립방정식 Ax = b
     return {idx: r[0] for idx, r in enumerate(ranks)}
+
