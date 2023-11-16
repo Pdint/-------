@@ -3,6 +3,8 @@ from konlpy.tag import Twitter
 
 import numpy as np #키워드 분석을 위한 그래프 생성 패키지
 
+from newspaper import Article
+
 # Scikit-learn 머신러링 이용을 위한 import
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
@@ -55,6 +57,7 @@ class Rank(object):
   def get_ranks(self, graph, d=0.85): # d = damping factor
     A = graph
     matrix_size = A.shape[0]
+    
     for id in range(matrix_size):
       A[id, id] = 0 # diagonal 부분을 0으로 
       link_sum = np.sum(A[:,id]) # A[:, id] = A[:][id]
@@ -67,3 +70,54 @@ class Rank(object):
       ranks = np.linalg.solve(A, B) # 연립방정식 Ax = b
     return {idx: r[0] for idx, r in enumerate(ranks)}
 
+class TextRank(object):
+    def __init__(self, text):
+        self.sent_tokenize = SentenceTokenizer()
+        
+        if text[:5] in ('http:', 'https'):
+            self.sentences = self.sent_tokenize.url2sentences(text)
+        else:
+            self.sentences = self.sent_tokenize.text2sentences(text)
+        
+        self.nouns = self.sent_tokenize.get_nouns(self.sentences)
+                    
+        self.graph_matrix = GraphMatrix()
+        self.sent_graph = self.graph_matrix.build_sent_graph(self.nouns)
+        self.words_graph, self.idx2word = self.graph_matrix.build_words_graph(self.nouns)
+        
+        self.rank = Rank()
+        self.sent_rank_idx = self.rank.get_ranks(self.sent_graph)
+        self.sorted_sent_rank_idx = sorted(self.sent_rank_idx, key=lambda k: self.sent_rank_idx[k], reverse=True)
+        
+        self.word_rank_idx =  self.rank.get_ranks(self.words_graph)
+        self.sorted_word_rank_idx = sorted(self.word_rank_idx, key=lambda k: self.word_rank_idx[k], reverse=True)
+        
+        
+    def summarize(self, sent_num=3):
+        summary = []
+        index=[]
+        for idx in self.sorted_sent_rank_idx[:sent_num]:
+            index.append(idx)
+        
+        index.sort()
+        for idx in index:
+            summary.append(self.sentences[idx])
+        
+        return summary
+        
+    def keywords(self, word_num=10):
+        rank = Rank()
+        rank_idx = rank.get_ranks(self.words_graph)
+        sorted_rank_idx = sorted(rank_idx, key=lambda k: rank_idx[k], reverse=True)
+        
+        keywords = []
+        index=[]
+        for idx in sorted_rank_idx[:word_num]:
+            index.append(idx)
+            
+        #index.sort()
+        for idx in index:
+            keywords.append(self.idx2word[idx])
+        
+        return keywords
+    
